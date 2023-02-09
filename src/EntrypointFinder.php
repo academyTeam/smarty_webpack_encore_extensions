@@ -4,16 +4,26 @@ namespace AcademyTeam\SmartyWebpackEncore\Extension;
 
 class EntrypointFinder
 {
-    public static function getEntrypoints(): array
+    public static function getEntrypoints()
     {
-        //find entrypoints file and return contents
+        //find entrypoints file and return conten
+       $path = EntrypointFinder::getWebpackConfigPath();
 
+    }
 
-        $json = file_get_contents(__DIR__ . '/../../../../../public/build/entrypoints.json');
-        $array = json_decode($json, true);
-        __FILE__
+    private static function getWebpackConfigPath() {
+        $path = dirname(__DIR__);
 
-        return $array;
+        do {
+            $path = dirname($path);
+
+            if (file_exists($path.DIRECTORY_SEPARATOR."webpack.config.js")) {
+                return $path . DIRECTORY_SEPARATOR . "webpack.config.js";
+            }
+
+        } while ($path !== dirname(DIRECTORY_SEPARATOR));
+
+        throw new \Exception('file not found');
     }
 
 }

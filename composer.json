@@ -9,8 +9,15 @@
   },
   "autoload": {
     "psr-4": {
-      "AcademyTeam\\SmartyWebpackEncore\\Extension": "src"
+      "AcademyTeam\\SmartyWebpackEncore\\Extension\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AcademyTeam\\SmartyWebpackEncore\\Extension\\Test\\": "test"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
   }
-
 }
