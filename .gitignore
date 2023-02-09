@@ -1,0 +1,14 @@
+.vagrant/
+vendor/
+config/development.config.php
+data/cache/*
+!data/cache/.gitkeep
+phpunit.xml
+.phpunit.result.cache
+.idea
+composer.lock
+node_modules
+data/user_*.tama
+data
+module/Tamagotchi/src/asset
+public/build
