@@ -11,4 +11,4 @@ node_modules
 data/user_*.tama
 data
 module/Tamagotchi/src/asset
-public/build
+public
