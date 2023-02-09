@@ -8,7 +8,12 @@ class EntrypointFinder
     {
         //find entrypoints file and return conten
        $path = EntrypointFinder::getWebpackConfigPath();
+        $config = file_get_contents($path);
 
+        $tmp = explode('.setOutputPath(', $config);
+        $between = explode(')', $tmp[1]);
+
+        echo dirname($path) . DIRECTORY_SEPARATOR . trim($between[0], '"\' ');
     }
 
     private static function getWebpackConfigPath() {
@@ -25,5 +30,10 @@ class EntrypointFinder
 
         throw new \Exception('file not found');
     }
+    
+    private static function get(){
+        
+    }
+    
 
 }
