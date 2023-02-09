@@ -6,6 +6,11 @@
     "php": ">=7.4",
     "ext-json": "*",
     "smarty/smarty": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AcademyTeam\\SmartyWebpackEncore\\Extension": "src"
+    }
   }
 
 }
