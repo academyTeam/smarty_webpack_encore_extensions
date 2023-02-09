@@ -1,6 +1,6 @@
 {
 
-  "name": "academyTeam/smarty_webpack_encore_extension",
+  "name": "academy-team/smarty_webpack_encore_extension",
   "description": "A short description of what your package does",
   "require": {
     "php": ">=7.4",
