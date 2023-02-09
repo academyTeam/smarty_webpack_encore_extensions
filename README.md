@@ -1,0 +1,1 @@
+# smarty_webpack_encore_extensions
