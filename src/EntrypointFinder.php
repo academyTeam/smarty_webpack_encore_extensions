@@ -4,26 +4,46 @@ namespace AcademyTeam\SmartyWebpackEncore\Extension;
 
 class EntrypointFinder
 {
-    public static function getEntrypoints()
+    public function getEntrypoints()
     {
-        //find entrypoints file and return conten
-       $path = EntrypointFinder::getWebpackConfigPath();
+        //find entrypoints file and return content
 
+        $entrypointsPath = $this->getEntrypointsPath();
+
+        if (!file_exists($entrypointsPath)) {
+            throw new \Exception('entrypoints.json could not be found. Try running Webpack.');
+        }
+
+       $content = file_get_contents($entrypointsPath);
+       $array = json_decode($content, true);
+
+       return $array['entrypoints'];
     }
 
-    private static function getWebpackConfigPath() {
-        $path = dirname(__DIR__);
+    public function getEntrypointsPath()
+    {
+        $path = $this->getWebpackConfigPath();
 
-        do {
+        $config = file_get_contents($path);
+
+        $tmp = explode('.setOutputPath(', $config);
+        $between = explode(')', $tmp[1]);
+
+        return dirname($path) . DIRECTORY_SEPARATOR . trim($between[0], '"\' ') . 'entrypoints.json';
+    }
+
+    public function getWebpackConfigPath() {
+        $path = __DIR__;
+
+        while ($path !== dirname(DIRECTORY_SEPARATOR)) {
             $path = dirname($path);
 
-            if (file_exists($path.DIRECTORY_SEPARATOR."webpack.config.js")) {
+            if (file_exists($path . DIRECTORY_SEPARATOR . "webpack.config.js")) {
                 return $path . DIRECTORY_SEPARATOR . "webpack.config.js";
             }
+        }
 
-        } while ($path !== dirname(DIRECTORY_SEPARATOR));
-
-        throw new \Exception('file not found');
+        throw new \Exception('Webpack config file not found.');
     }
 
 }

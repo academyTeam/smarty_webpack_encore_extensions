@@ -8,11 +8,13 @@ use PHPUnit\Framework\TestCase;
 class EntrypointFinderTest extends TestCase
 {
 
-    public function testEntrypointfinder() {
+    public function testEntrypointFinder() {
 
-        EntrypointFinder::getEntrypoints();
+        $entrypointFinder = new EntrypointFinder();
+        $entrypoints = $entrypointFinder->getEntrypoints();
 
-
+        $this->assertArrayHasKey('css', $entrypoints['app']);
+        $this->assertArrayHasKey('js', $entrypoints['app']);
 
     }
 
