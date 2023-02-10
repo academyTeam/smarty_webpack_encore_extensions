@@ -9,7 +9,6 @@ class EntrypointFinder
         //find entrypoints file and return content
 
         $entrypointsPath = $this->getEntrypointsPath();
-
         if (!file_exists($entrypointsPath)) {
             throw new \Exception('entrypoints.json could not be found. Try running Webpack.');
         }
@@ -29,7 +28,7 @@ class EntrypointFinder
         $tmp = explode('.setOutputPath(', $config);
         $between = explode(')', $tmp[1]);
 
-        return dirname($path) . DIRECTORY_SEPARATOR . trim($between[0], '"\' ') . 'entrypoints.json';
+        return dirname($path) . DIRECTORY_SEPARATOR . trim($between[0], '"\'/ ') . DIRECTORY_SEPARATOR . 'entrypoints.json';
     }
 
     public function getWebpackConfigPath() {
